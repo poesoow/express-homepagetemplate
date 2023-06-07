@@ -44,7 +44,7 @@ app.get('/portfolio', (요청, 응답) => {
 
 // vue로 작업한 작업물 dist 폴더 연결
 // https://expressjs.com/en/starter/static-files.html 참고
-app.use(express.static(path.join(__dirname, 'homepagetemplate_/dist')))
+app.use(express.static(path.join(__dirname, 'home/dist')))
 
 // app.get('/', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'homepagetemplate_/dist/index.html'))
@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'homepagetemplate_/dist')))
 // 위 코드에서 / 대신 * 를 사용하여 어떤 페이지에서 새로고침을 하여도 동작가능하도록 함 이전에는 세부페이지에서 새로고침하면 vuex 가 실행이 안되었음
 
 app.get('*', (req, res)=> {
-  res.sendFile(path.join(__dirname, 'homepagetemplate_/dist/index.html'))
+  res.sendFile(path.join(__dirname, 'home/dist/index.html'))
 })
 
 module.exports = app;
