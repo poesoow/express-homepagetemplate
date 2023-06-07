@@ -1,0 +1,19 @@
+node.js 사용 
+
+npm init 
+package.json 파일 생성 명령어
+
+포트 - 외부컴퓨터와 통신할 수 있게 설정 6만여개 존재 
+
+node server.js
+
+
+nodemon 설치
+
+npm install -g nodemon
+
+코드 변경 시 재시작하는 번거로움을 해소 
+-> 자동으로 재시작을 해주는 라이브러리
+
+실행
+nodemon server.js
