@@ -55,3 +55,5 @@ app.use(express.static(path.join(__dirname, 'homepagetemplate_/dist')))
 app.get('*', (req, res)=> {
   res.sendFile(path.join(__dirname, 'homepagetemplate_/dist/index.html'))
 })
+
+module.exports = app;
