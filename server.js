@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+// vercel 에서 5000을 지원하기 때문에 포트번호를 5000으로 해야 가능
 const port = 5000;
 const path = require('path');
 
@@ -56,4 +57,7 @@ app.get('*', (req, res)=> {
   res.sendFile(path.join(__dirname, 'home/dist/index.html'))
 })
 
+// vercel로 배포하기 위해서는 아래 코드와
+// vercel.json 파일 필요
+// + git submodule로 하위폴더를 서브모듈화 해두면 깃허브상에서 하위 폴더를 못들어가기 때문에 dist 폴더내용은 따로 밖으로 빼내야 가능 (난 home 이라는 폴더에 넣음)
 module.exports = app;
