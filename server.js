@@ -55,7 +55,14 @@ app.delete('/delete', function(req, res) {
 })
 // id 값이 무엇이든 들어갈 수 있음
 app.post('/edit/:id', function(req, res) {
-  console.log(req.params.id)
+  save.collection('test2').findOne({_id: ObjectId(req.params.id)}, function(err, result) {
+    if(result) {
+      res.render('edit.ejs', {data: result})
+    } 
+  })
+})
+app.put('/edit', function(req, res) {
+  console.log(req.body.name, req.body.age)
 })
 
 
