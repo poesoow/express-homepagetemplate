@@ -4,7 +4,7 @@ const app = express();
 const port = 5000;
 const path = require('path');
 const bodyParser = require('body-parser');
-const methodOverride = require('mothod-override');
+const methodOverride = require('method-override');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
@@ -43,6 +43,9 @@ app.get('/list', function(req, res) {
   save.collection('test2').find().toArray(function(err, result){
     res.render('list.ejs', {data: result})
   })
+})
+app.delete('/delete', function(req, res) {
+  console.log(req.body)
 })
 
 // vue로 작업한 작업물 dist 폴더 연결

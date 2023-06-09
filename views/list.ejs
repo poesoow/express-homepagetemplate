@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script>
+    function Event(e, id, formId){
+      if(e == 'edit'){
+        alert('수정')
+      } else {
+        // 삭제
+        document.querySelector('#form'+formId).setAttribute('action', '/' + e)
+      }
+    }
+  </script>
 </head>
 <body>
   <div style="display: flex; flex-wrap: wrap; gap: 10px; padding-left: 50px; margin-top: 50px;">
@@ -11,10 +21,11 @@
       <form action="" method="post" id="form<%=i%>" style="border: 1px solid gray; padding: 10px;">
         <div>
           <h3><%= data.length - i %></h3>
-          <p><input type="text" value="<%= data[i].name %>" readonly></p>
-          <p><input type="text" value="<%= data[i].age %>" readonly></p>
-          <button type="submit">수정</button>
-          <button type="submit">삭제</button>
+          <p><input type="text" value="<%= data[i].name %>" readonly name="name"></p>
+          <p><input type="text" value="<%= data[i].age %>" readonly name="age"></p>
+          <p><input type="hidden" value="<%= data[i]._id %>" readonly name="id"></p>
+          <button type="submit" onClick="Event('edit', '<%= data[i]._id %>', '<%= i %>')">수정</button>
+          <button type="submit" onClick="Event('delete?_method=DELETE', '<%= data[i]._id %>', '<%= i %>')">삭제</button>
         </div>
       </form>
     <% } %>
