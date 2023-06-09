@@ -93,6 +93,31 @@ app.get('/api/movie', function(req, res) {
   })
 })
 
+// 연도로 검색 필터링되도록
+app.get('/api/movie/:year', function (req, res) {
+
+  const category = Number(req.params.year)
+  // const country = req.params.country
+
+  // , countries: country
+  db.collection('movies').find({year: category}).toArray(function (err, result) {
+    // [object object] 를 우리가 볼 수 있도록 수정
+    const data2 = JSON.stringify(result, null, 2)
+    res.render('api.ejs', { data: data2 })
+  })
+})
+// 나라 검색인데 나라는 배열로 되어있어서 조금더 작업을 해야 되나봄 현재 안됨
+app.get('/api/movie/:country', function (req, res) {
+
+  const country = req.params.country.toUpperCase()
+
+  db.collection('movies').find({ countries: country }).toArray(function (err, result) {
+    // [object object] 를 우리가 볼 수 있도록 수정
+    const data2 = JSON.stringify(result, null, 2)
+    res.render('api.ejs', { data: data2 })
+  })
+})
+
 // vue로 작업한 작업물 dist 폴더 연결
 app.use(express.static(path.join(__dirname, 'home/dist')))
 
