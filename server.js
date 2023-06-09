@@ -3,6 +3,9 @@ const app = express();
 // vercel 에서 5000을 지원하기 때문에 포트번호를 5000으로 해야 가능
 const port = 5000;
 const path = require('path');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({extended: true}))
 
 require("dotenv").config();
 
@@ -19,8 +22,6 @@ MongoClient.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}
   db = client.db('sample_mflix');
   save = client.db('test2');
 
-  save.collection('test2').insertOne({name: "test이름", age: 20})
-
 
   //  .listen(서버 오픈할 포트번호, 함수)
   // listen 함수는 한번만 사용 가능한가봄
@@ -29,7 +30,12 @@ MongoClient.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}
   })
 })
 
-
+app.get('/write', function(req, res) {
+  res.sendFile(path.join(__dirname, '/write.html'));
+})
+app.post('/newpost', function(req, res) {
+  
+})
 
 
 // vue로 작업한 파일 연결 이전
@@ -65,7 +71,7 @@ app.get('/portfolio', (요청, 응답) => {
 
 // vue로 작업한 작업물 dist 폴더 연결
 // https://expressjs.com/en/starter/static-files.html 참고
-app.use(express.static(path.join(__dirname, 'home/dist')))
+// app.use(express.static(path.join(__dirname, 'home/dist')))
 
 // app.get('/', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'homepagetemplate_/dist/index.html'))
@@ -73,9 +79,9 @@ app.use(express.static(path.join(__dirname, 'home/dist')))
 
 // 위 코드에서 / 대신 * 를 사용하여 어떤 페이지에서 새로고침을 하여도 동작가능하도록 함 이전에는 세부페이지에서 새로고침하면 vuex 가 실행이 안되었음
 
-app.get('*', (req, res)=> {
-  res.sendFile(path.join(__dirname, 'home/dist/index.html'))
-})
+// app.get('*', (req, res)=> {
+//   res.sendFile(path.join(__dirname, 'home/dist/index.html'))
+// })
 
 // vercel로 배포하기 위해서는 아래 코드와
 // vercel.json 파일 필요
