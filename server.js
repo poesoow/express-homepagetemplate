@@ -34,7 +34,15 @@ app.get('/write', function(req, res) {
   res.sendFile(path.join(__dirname, '/write.html'));
 })
 app.post('/newpost', function(req, res) {
-  
+  // console.log(req.body)
+  const data = {
+    name: req.body.name,
+    age: req.body.age
+  }
+
+  save.collection('test2').insertOne(data, function(arr, result) {
+    
+  })
 })
 
 
