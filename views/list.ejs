@@ -6,15 +6,12 @@
   <title>Document</title>
 </head>
 <body>
-  <%= data[0].name %>
-  <%= data[0].age %>
-
-
-  <%= data[4].name %>
-  <%= data[4].age %>
-
-
-  <%= data[7].name %>
-  <%= data[7].age %>
+  <% for(let i = 0; i < data.length; i++) { %>
+    <div style="display: flex;">
+      <p><%= data.length - i %></p>
+      <p><input type="text" value="<%= data[i].name %>" readonly></p>
+      <p><input type="text" value="<%= data[i].age %>" readonly></p>
+    </div>
+  <% } %>
 </body>
 </html>
