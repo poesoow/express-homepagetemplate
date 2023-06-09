@@ -7,10 +7,10 @@
   <script>
     function Event(e, id, formId){
       if(e == 'edit'){
-        alert('수정')
+        document.querySelector('#form' + formId).setAttribute('action', '/' + e + '/' + id)
       } else {
         // 삭제
-        document.querySelector('#form'+formId).setAttribute('action', '/' + e)
+        document.querySelector('#form' + formId).setAttribute('action', '/' + e)
       }
     }
   </script>

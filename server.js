@@ -53,6 +53,11 @@ app.delete('/delete', function(req, res) {
     res.redirect('list')
   })
 })
+// id 값이 무엇이든 들어갈 수 있음
+app.post('/edit/:id', function(req, res) {
+  console.log(req.params.id)
+})
+
 
 // vue로 작업한 작업물 dist 폴더 연결
 app.use(express.static(path.join(__dirname, 'home/dist')))
