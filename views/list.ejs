@@ -6,12 +6,18 @@
   <title>Document</title>
 </head>
 <body>
-  <% for(let i = 0; i < data.length; i++) { %>
-    <div style="display: flex;">
-      <p><%= data.length - i %></p>
-      <p><input type="text" value="<%= data[i].name %>" readonly></p>
-      <p><input type="text" value="<%= data[i].age %>" readonly></p>
-    </div>
-  <% } %>
+  <div style="display: flex; flex-wrap: wrap; gap: 10px; padding-left: 50px; margin-top: 50px;">
+    <% for(let i = 0; i < data.length; i++) { %>
+      <form action="" method="post" id="form<%=i%>" style="border: 1px solid gray; padding: 10px;">
+        <div>
+          <h3><%= data.length - i %></h3>
+          <p><input type="text" value="<%= data[i].name %>" readonly></p>
+          <p><input type="text" value="<%= data[i].age %>" readonly></p>
+          <button type="submit">수정</button>
+          <button type="submit">삭제</button>
+        </div>
+      </form>
+    <% } %>
+  </div>
 </body>
 </html>
