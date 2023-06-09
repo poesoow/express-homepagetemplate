@@ -44,10 +44,15 @@ app.post('/newpost', function(req, res) {
   }
 
   save.collection('test2').insertOne(data, function(arr, result) {
-
+    res.redirect('/list')
   })
 })
 
+app.get('/list', function(req, res) {
+  save.collection('test2').find().toArray(function(err, result){
+    res.render('list.ejs', {data: result})
+  })
+})
 
 // vue로 작업한 파일 연결 이전
 /* 
