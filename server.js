@@ -85,6 +85,14 @@ app.get('/search', function(req, res) {
   })
 })
 
+app.get('/api/movie', function(req, res) {
+  db.collection('movies').find().toArray(function(err, result) {
+    // [object object] 를 우리가 볼 수 있도록 수정
+    const data2 = JSON.stringify(result, null, 2)
+    res.render('api.ejs', {data: data2})
+  })
+})
+
 // vue로 작업한 작업물 dist 폴더 연결
 app.use(express.static(path.join(__dirname, 'home/dist')))
 
