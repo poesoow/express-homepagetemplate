@@ -9,6 +9,9 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 require("dotenv").config();
 
+app.set('view engine', 'ejs')
+
+
 let db;
 let save;
 
@@ -31,7 +34,7 @@ MongoClient.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}
 })
 
 app.get('/write', function(req, res) {
-  res.sendFile(path.join(__dirname, '/write.html'));
+  res.render('write.ejs')
 })
 app.post('/newpost', function(req, res) {
   // console.log(req.body)
@@ -41,7 +44,7 @@ app.post('/newpost', function(req, res) {
   }
 
   save.collection('test2').insertOne(data, function(arr, result) {
-    
+
   })
 })
 
