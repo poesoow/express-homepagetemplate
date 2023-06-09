@@ -4,12 +4,32 @@ const app = express();
 const port = 5000;
 const path = require('path');
 
+require("dotenv").config();
 
-//  .listen(서버 오픈할 포트번호, 함수)
-// listen 함수는 한번만 사용 가능한가봄
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+let db;
+let save;
+
+const MongoClient = require('mongodb').MongoClient
+
+MongoClient.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.qtjev7k.mongodb.net/`, function(err, client) {
+  if(err) return console.log(err);
+
+  // 몽고 디비가 성공이 되면
+
+  db = client.db('sample_mflix');
+  save = client.db('test2');
+
+  save.collection('test2').insertOne({name: "test이름", age: 20})
+
+
+  //  .listen(서버 오픈할 포트번호, 함수)
+  // listen 함수는 한번만 사용 가능한가봄
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+  })
 })
+
+
 
 
 // vue로 작업한 파일 연결 이전

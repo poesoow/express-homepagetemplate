@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.1.4",
     "express": "^4.18.2",
+    "mongodb": "^3.6.4",
     "nodemon": "^2.0.22"
   }
 }
