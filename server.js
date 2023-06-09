@@ -62,7 +62,15 @@ app.post('/edit/:id', function(req, res) {
   })
 })
 app.put('/edit', function(req, res) {
-  console.log(req.body.name, req.body.age)
+  // 어떤게시물을 수정할껀지, 수정값, 콜백함수
+  save.collection('test2').updateOne({_id: ObjectId(req.body.id)}, {
+    $set: {
+      name: req.body.name,
+      age: req.body.age
+    }
+  }, function(err, result) { 
+    res.redirect('/list')
+  })
 })
 
 
