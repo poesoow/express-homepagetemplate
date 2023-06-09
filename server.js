@@ -72,7 +72,18 @@ app.put('/edit', function(req, res) {
     res.redirect('/list')
   })
 })
-
+app.get('/search', function(req, res) {
+  save.collection('test2').find({name: req.query.value}).toArray(function(err, result) {
+      if(result.length) {
+        // 구조분해 할당
+        const [list, ...lists] = result;
+        
+        res.render('search.ejs', {data: list})
+      } else {
+        res.send('데이터 없음')
+      }
+  })
+})
 
 // vue로 작업한 작업물 dist 폴더 연결
 app.use(express.static(path.join(__dirname, 'home/dist')))

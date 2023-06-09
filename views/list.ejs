@@ -16,6 +16,13 @@
   </script>
 </head>
 <body>
+  <div>
+    <form action="/search" method="get" id="search">
+      <input type="text" placeholder="검색어를 입력해주세요" name="value">
+      <button type="submit">검색</button>
+    </form>
+  </div>
+
   <div style="display: flex; flex-wrap: wrap; gap: 10px; padding-left: 50px; margin-top: 50px;">
     <% for(let i = 0; i < data.length; i++) { %>
       <form action="" method="post" id="form<%=i%>" style="border: 1px solid gray; padding: 10px;">
