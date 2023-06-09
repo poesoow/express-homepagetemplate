@@ -5,6 +5,7 @@ const port = 5000;
 const path = require('path');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const ObjectId = require('mongodb').ObjectId
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
@@ -45,7 +46,12 @@ app.get('/list', function(req, res) {
   })
 })
 app.delete('/delete', function(req, res) {
-  console.log(req.body)
+  save.collection('test2').deleteOne({
+    _id: ObjectId(req.body.id)
+  }, function(err, result) {
+    if(err) return console.log(err);
+    res.redirect('list')
+  })
 })
 
 // vue로 작업한 작업물 dist 폴더 연결
